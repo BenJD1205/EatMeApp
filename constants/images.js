@@ -35,6 +35,8 @@ const steak = require("../assets/images/steak.jpg");
 const desserts = require("../assets/images/desserts.jpg");
 const drinks = require("../assets/images/drinks.jpg");
 const bugger = require("../assets/images/buggers.jpg");
+const bkground = require("../assets/images/background_02.png");
+const noavatar = require("../assets/images/noAvatar.png")
 
 export default {
     avatar_1,
@@ -75,5 +77,7 @@ export default {
     steak,
     desserts,
     drinks,
-    bugger
+    bugger,
+    bkground,
+    noavatar
 }

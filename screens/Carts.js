@@ -1,11 +1,17 @@
 import React from 'react';
-import { Button, StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native';
+import { Button, StyleSheet, Text, View, Image, TouchableOpacity} from 'react-native';
 import Products from '../components/Products';
 import {connect} from 'react-redux';
 import {removeToCart} from '../store/cart/cartActions';
 import {icons, SIZES, COLORS, FONTS} from '../constants';
+import { LogBox } from 'react-native';
+import Swipeable from 'react-native-swipeable';
 
  function Carts({carts,actRemoveFromCart,navigation}) {
+
+  React.useEffect(() => {
+      LogBox.ignoreLogs(['Animated: `useNativeDriver`']);
+  }, [])
 
     function renderHeader(){
       return(
@@ -75,60 +81,75 @@ import {icons, SIZES, COLORS, FONTS} from '../constants';
       return(
         <View style={{marginTop:10}}>
           {carts && carts.map((item,index) => (
-            <TouchableOpacity
-              key={`item-${index}`}
-              style={{
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  backgroundColor:COLORS.white,
-                  width:'100%',
-                  height:80,
-                  padding: SIZES.padding*2,
-                  borderBottomWidth:1,  
-                  borderBottomColor: COLORS.lightGray
-              }}
-              onPress={()=>actRemoveFromCart(item)}
+            <Swipeable
+              rightButtons={[
+                  <View style={styles.button}>
+                      <TouchableOpacity
+                        style={{
+                          marginRight:10
+                        }}
+                        onPress={()=>actRemoveFromCart(item)}
+                      >
+                          <Image source={icons.garbage} />
+                      </TouchableOpacity>
+                  </View>,
+              ]}
             >
-              <View style={{flexDirection:'row'}}>
-                <Image  
-                  source={item.photo}
-                  resizeMode="contain"
+              <TouchableOpacity
+                  key={`item-${index}`}
                   style={{
-                    width:50,
-                    height:50
-                  }}
-                />
-                {/*Name */}
-                <View
-                  style={{
-                    padding: SIZES.padding
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      backgroundColor:COLORS.white,
+                      width:'100%',
+                      height:80,
+                      padding: SIZES.padding*2,
+                      borderBottomWidth:1,  
+                      borderBottomColor: COLORS.lightGray
                   }}
                 >
-                  <Text style={{...FONTS.body4}}>{item.name}</Text>
-                </View>
-                <View
-                  style={{
-                    padding: SIZES.padding
-                  }}
-                >
-                  <Text style={{...FONTS.body4}}>{item.quantity}</Text>
-                </View>
-                <View
-                  style={{
-                    padding: SIZES.padding
-                  }}
-                >
-                  <Text style={{...FONTS.body4}}>{item.price}</Text>
-                </View>
-                <View
-                  style={{
-                    padding: SIZES.padding
-                  }}
-                >
-                  <Text style={{...FONTS.body4}}>{item.quantity*item.price}</Text>
-                </View>
-              </View>
-            </TouchableOpacity>
+                  
+                  <View style={{flexDirection:'row'}}>
+                      <Image  
+                        source={item.photo}
+                        resizeMode="contain"
+                        style={{
+                          width:50,
+                          height:50
+                        }}
+                      />
+                      {/*Name */}
+                      <View
+                        style={{
+                          padding: SIZES.padding
+                        }}
+                      >
+                        <Text style={{...FONTS.body4}}>{item.name}</Text>
+                      </View>
+                      <View
+                        style={{
+                          padding: SIZES.padding
+                        }}
+                      >
+                        <Text style={{...FONTS.body4}}>{item.quantity}</Text>
+                      </View>
+                      <View
+                        style={{
+                          padding: SIZES.padding
+                        }}
+                      >
+                        <Text style={{...FONTS.body4}}>{item.price}</Text>
+                      </View>
+                      <View
+                        style={{
+                          padding: SIZES.padding
+                        }}
+                      >
+                        <Text style={{...FONTS.body4}}>{item.quantity*item.price}</Text>
+                      </View>
+                    </View>
+                </TouchableOpacity>
+            </Swipeable>
           ))}
         </View>
       )
@@ -159,6 +180,10 @@ const mapDispatchToProps = (dispatch) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  button:{
+    justifyContent: 'center',
+    marginTop:30
   },
 });
 export default connect(mapStateToProps,mapDispatchToProps)(Carts);

@@ -604,6 +604,10 @@ const Home = ({navigation}) => {
                         marginRight: SIZES.padding,
                         marginBottom:20
                     }}
+                    onPress={() => navigation.navigate("Restaurant",{
+                        item,
+                        currentLocation
+                    })}
                 >
                     {/* Images */}
                     <Image 

@@ -8,19 +8,33 @@ import {
 import { AuthLayout } from '../';
 import { FONTS, SIZES, COLORS, icons} from '../../constants';
 import { FormInput, CustomSwitch, TextButton, TextIconButton} from '../../components';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {utils} from '../../utils';
 
-const SignIn = ({navigation}) => {
+const SignIn = ({navigation, onLoginIn}) => {
+
+    const userInfor = {email: 'ben@gmail.com', password: '123456'}
 
     const [email,setEmail] = React.useState("")
     const [password,setPassword] = React.useState("")
     const [emailError, setEmailError] = React.useState("")
+    const [isLoggedIn, setIsLoggedIn] = React.useState(null)
 
     const [showPass,setShowPassword] = React.useState(false)
     const [saveMe,setSaveMe] = React.useState(false)
 
     function isEnableSignIn(){
         return email != "" && password != "" && emailError == ""
+    }
+
+    const  login = () => {
+        if(userInfor.email === email && userInfor.password === password){
+            //console.log("Logged in")
+            //const res = await AsyncStorage.setItem('isLoggedIn')
+                navigation.navigate("Home")
+        }else{
+            alert("Email or Password is wrong")
+        }
     }
 
     return (
@@ -125,6 +139,8 @@ const SignIn = ({navigation}) => {
                         borderRadius:SIZES.radius,
                         backgroundColor: isEnableSignIn() ? COLORS.primary : COLORS.transparentPrimary
                     }}
+                    onPress={() => login()}
+                    //onPress={() => navigation.navigate("Home")}
                 />
                 {/*Sign Up */}
                 <View
@@ -206,6 +222,18 @@ const SignIn = ({navigation}) => {
             <View style={{height:30}} />
         </AuthLayout>
     )
+}
+
+const mapStateToProps = (state, ownProps) => {
+    return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLoginIn: (email,password) => {
+            dispatch(Login(email,password))
+        }
+    }
 }
 
 export default SignIn;

@@ -18,10 +18,13 @@
     "react": "17.0.1",
     "react-native": "0.64.2",
     "react-native-keyboard-aware-scroll-view": "^0.9.4",
+    "react-native-maps": "^0.29.3",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.6.0",
     "react-native-splash-screen": "^3.2.0",
+    "react-native-swipeable": "^0.6.0",
     "react-redux": "^7.2.4",
+    "react-tinder-card": "^1.4.0",
     "redux": "^4.1.1",
     "redux-persist": "^6.0.0",
     "redux-thunk": "^2.3.0"

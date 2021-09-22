@@ -217,4 +217,16 @@ const SignUp = ({navigation}) => {
     )
 }
 
+const mapStateToProps = (state, ownProps) => {
+    return {}
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onLoginIn: (email,password) => {
+            dispatch(Login(email,password))
+        }
+    }
+}
+
 export default SignUp;

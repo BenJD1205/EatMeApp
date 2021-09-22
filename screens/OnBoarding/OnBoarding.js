@@ -122,7 +122,7 @@ const OnBoarding = ({navigation}) => {
                         labelStyle={{
                             color:COLORS.darkGray2
                         }}
-                        onPress={() => navigation.replace("Home")}
+                        onPress={() => navigation.replace("SignIn")}
                     />
 
                     <TextButton
@@ -155,7 +155,7 @@ const OnBoarding = ({navigation}) => {
                                 height:60,
                                 borderRadius:SIZES.radius
                             }}
-                            onPress={() =>navigation.replace("Home")}
+                            onPress={() =>navigation.replace("SignIn")}
                         >
 
                         </TextButton>

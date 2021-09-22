@@ -49,6 +49,9 @@ const profile = require("../assets/icons/profile.png")
 const setting = require("../assets/icons/setting.png")
 const wallet = require("../assets/icons/wallet.png")
 const help = require("../assets/icons/help.png")
+const garbage = require("../assets/icons/garbage.png")
+const phone = require("../assets/icons/phone-call.png")
+const email = require("../assets/icons/gmail.png")
 
 export default {
     back,
@@ -102,4 +105,7 @@ export default {
     setting,
     wallet,
     help,
+    garbage,
+    email,
+    phone
 }

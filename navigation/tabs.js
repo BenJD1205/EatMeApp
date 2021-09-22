@@ -7,7 +7,7 @@ import {
 
 import { createBottomTabNavigator, BottomTabBar } from "@react-navigation/bottom-tabs";
 
-import { Home, Inform, SignIn, Favourite } from "../screens";
+import { Home, Inform, Favourite, User } from "../screens";
 
 import { COLORS, icons } from "../constants";
 
@@ -88,7 +88,7 @@ const Tabs = () => {
             {/* User */}
             <Tab.Screen 
                 name="User"
-                component={SignIn}
+                component={User}
                 options={{
                     tabBarIcon: ({ focused }) => (
                         <Image
